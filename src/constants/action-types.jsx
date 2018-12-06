@@ -1,4 +1,3 @@
-export const DELETE_TASK = "DELETE_TASK";
-export const ADD_TASK = "ADD_TASK";
-export const SET_COMPLETED = "SET_COMPLETED";
-export const SET_TEXT = "SET_TEXT";
+export const DELETE_TASK = 'DELETE_TASK';
+export const ADD_TASK = 'ADD_TASK';
+export const SET_COMPLETED = 'SET_COMPLETED';

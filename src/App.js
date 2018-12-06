@@ -1,9 +1,11 @@
-import React, { Component } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
-import NavBar from "./components/navBar";
-import Main from "./components/main";
-import "./App.css";
-import sobre from "./pages/sobre";
+import React, { Component } from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import NavBar from './components/navBar';
+import Main from './components/main';
+import './App.css';
+import sobre from './pages/sobre';
+
+import store from './store/store';
 
 class App extends Component {
   render() {

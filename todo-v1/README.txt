@@ -1,3 +1,3 @@
-Versão inicial 
+Versï¿½o inicial 
 
 ES6 + React, sem refactoring.
