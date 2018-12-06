@@ -1,2 +1,2 @@
-0.2 - Refactoring
-0.1 - Versão inicial, ES6 + react
+2.0 - Refactoring: redux adicionado.
+1.0 - Versão inicial, ES6 + react

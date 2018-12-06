@@ -1,10 +1,25 @@
 import React, { Component } from "react";
+import store from "./../store/store";
+import { setText } from "../actions/actions";
+import { addTask } from "./../actions/actions";
 
 export default class AddTask extends Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    const { currentTaskName } = store.getState();
+    store.dispatch(addTask(currentTaskName));
+    store.dispatch(setText(""));
+  };
+
+  handleChange = e => {
+    store.dispatch(setText(e.target.value));
+  };
+
   render() {
-    const { onSubmit, onChange } = this.props;
+    const { currentTaskName } = store.getState();
+
     return (
-      <form onSubmit={onSubmit} className="m-2">
+      <form onSubmit={this.handleSubmit} className="m-2">
         <div className="form-group">
           <label htmlFor="tarefa">Adicionar Tarefa</label>
           <input
@@ -12,7 +27,8 @@ export default class AddTask extends Component {
             id="tarefa"
             className="form-control"
             type="text"
-            onChange={e => onChange(e)}
+            value={currentTaskName}
+            onChange={e => this.handleChange(e)}
           />
         </div>
 

@@ -4,12 +4,10 @@ import Todos from "./todos";
 
 export default class Main extends Component {
   render() {
-    const { todos, onCompleted, onDeleted, onSubmit, onChange } = this.props;
-
     return (
       <React.Fragment>
-        <AddTask onSubmit={onSubmit} onChange={onChange} />
-        <Todos todos={todos} onCompleted={onCompleted} onDeleted={onDeleted} />
+        <AddTask />
+        <Todos />
       </React.Fragment>
     );
   }
