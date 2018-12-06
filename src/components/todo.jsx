@@ -1,36 +1,34 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Todo extends Component {
-  getClassesText = () => {
-    let classes = "text m-2 ";
-    classes += this.props.todo.completed === true ? "text-success" : "";
-    return classes;
-  };
+const Todo = props => {
+  const { todo, onCompleted, onDeleted } = props;
 
-  getClassesButton = () => {
-    let classes = "m-2 btn btn-";
-    classes += this.props.todo.completed === true ? "success" : "secondary";
-    return classes;
-  };
+  return (
+    <div>
+      <span className={getClassesText(todo)}> {todo.value} </span>
+      <button
+        onClick={() => onCompleted(todo)}
+        className={getClassesButton(todo)}
+      >
+        Completado
+      </button>
+      <button onClick={() => onDeleted(todo)} className="btn btn-danger">
+        Delete
+      </button>
+    </div>
+  );
+};
 
-  render() {
-    const { todo, onCompleted, onDeleted } = this.props;
+const getClassesText = todo => {
+  let classes = "text m-2 ";
+  classes += todo.completed === true ? "text-success" : "";
+  return classes;
+};
 
-    return (
-      <div>
-        <span className={this.getClassesText()}> {todo.value} </span>
-        <button
-          onClick={() => onCompleted(todo)}
-          className={this.getClassesButton()}
-        >
-          Completado
-        </button>
-        <button onClick={() => onDeleted(todo)} className="btn btn-danger">
-          Delete
-        </button>
-      </div>
-    );
-  }
-}
+const getClassesButton = todo => {
+  let classes = "m-2 btn btn-";
+  classes += todo.completed === true ? "success" : "secondary";
+  return classes;
+};
 
 export default Todo;
