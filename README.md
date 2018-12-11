@@ -17,6 +17,7 @@ Version 2.0
 
 - Redux included
 - Classes refatoradas para SFC
+- React-redux included
 
 Main libraries used:
 

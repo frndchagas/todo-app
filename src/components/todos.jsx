@@ -1,28 +1,15 @@
 import React from "react";
 import Todo from "./todo";
-import store from "./../store/store";
-import { setCompleted } from "../actions/actions";
-import { deleteCurrentTask } from "./../actions/actions";
+import { connect } from "react-redux";
 
-const Todos = () => {
-  const { todos } = store.getState();
-
-  return todos.map(todo => (
-    <Todo
-      key={todo.id}
-      todo={todo}
-      onCompleted={todo => handleCompleted(todo)}
-      onDeleted={todo => handleDeleted(todo)}
-    />
-  ));
+const Todos = props => {
+  const { todos } = props;
+  if (todos.length > 0)
+    return todos.map(todo => <Todo key={todo.id} todo={todo} />);
+  else return <h1>Não existem tarefas criadas.</h1>;
 };
 
-const handleCompleted = todo => {
-  store.dispatch(setCompleted(todo.id));
+const mapStateToProps = ({ todos }) => {
+  return { todos };
 };
-
-const handleDeleted = todo => {
-  store.dispatch(deleteCurrentTask(todo.id));
-};
-
-export default Todos;
+export default connect(mapStateToProps)(Todos);

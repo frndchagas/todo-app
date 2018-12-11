@@ -1,8 +1,7 @@
 import {
   DELETE_TASK,
   ADD_TASK,
-  SET_COMPLETED,
-  SET_TEXT
+  SET_COMPLETED
 } from "./../constants/action-types";
 
 export const deleteCurrentTask = id => ({
@@ -17,10 +16,5 @@ export const setCompleted = id => ({
 
 export const addTask = text => ({
   type: ADD_TASK,
-  payload: text
-});
-
-export const setText = text => ({
-  type: SET_TEXT,
   payload: text
 });

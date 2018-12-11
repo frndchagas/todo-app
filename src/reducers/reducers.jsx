@@ -1,8 +1,7 @@
 import {
   DELETE_TASK,
   SET_COMPLETED,
-  ADD_TASK,
-  SET_TEXT
+  ADD_TASK
 } from "./../constants/action-types";
 
 const initialState = {
@@ -10,36 +9,32 @@ const initialState = {
     { id: 1, value: "Tarefa A", completed: true },
     { id: 2, value: "Tarefa B", completed: false },
     { id: 3, value: "Tarefa C", completed: false }
-  ],
-  currentTaskName: ""
+  ]
 };
 
 const reducers = (state = initialState, actions) => {
-  const { todos } = state;
+  const { todos: oldTodos } = state;
   switch (actions.type) {
-    case SET_TEXT:
-      state.currentTaskName = actions.payload;
-      return state;
     case ADD_TASK:
-      const taskName = actions.payload;
-      const last = todos[todos.length - 1];
-      todos.push({
-        id: last.id + 1,
-        value: taskName,
-        completed: false
-      });
-      state.todos = todos;
-      return state;
+      const name = actions.payload;
+      let newId = 1;
+      if (oldTodos.length > 0) {
+        const last = oldTodos[oldTodos.length - 1];
+        newId = last.id + 1;
+      }
+      const newTodo = { id: newId, value: name, completed: false };
+      const todos = [...oldTodos, newTodo];
+      return { todos };
     case SET_COMPLETED:
-      state.todos = todos.map(task => {
-        if (task.id === actions.payload)
-          return { ...task, completed: !task.completed };
-        return task;
-      });
-      return state;
+      return {
+        todos: oldTodos.map(task => {
+          if (task.id === actions.payload)
+            return { ...task, completed: !task.completed };
+          return task;
+        })
+      };
     case DELETE_TASK:
-      state.todos = todos.filter(t => t.id !== actions.payload);
-      return state;
+      return { todos: oldTodos.filter(t => t.id !== actions.payload) };
     default:
       return state;
   }
